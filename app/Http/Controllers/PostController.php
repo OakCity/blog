@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         return view('posts.index')->withPosts($posts);
     }
 
@@ -40,11 +40,14 @@ class PostController extends Controller
         $this->validate($request, array(
 
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|max:255|unique:posts,slug',
             'body' => 'required'
         ));
 
         $post = new Post;
+
         $post->title = $request->title;
+        $post->slug = $request ->slug;
         $post->body= $request->body;
 
         $post->save();
@@ -94,12 +97,15 @@ class PostController extends Controller
         $this->validate($request, array(
 
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|max:255|unique:posts,slug',
             'body' => 'required'
         ));
 
         //save to database
         $post = Post::find($id);
+
         $post->title = $request->input('title');
+        $post->slug = $request ->slug;
         $post->body= $request->input('body');
 
         $post->save();
@@ -127,6 +133,6 @@ class PostController extends Controller
         Session::flash('success', 'This post was deleted');
 
         return redirect()->route('posts.index');
-        
+
     }
 }

@@ -7,6 +7,9 @@
         {{ Form::label('title', 'Title:') }}
         {{ Form::text('title', null, ["class" => 'form-spacing-top']) }}
         <hr>
+        {{ Form::label('slug', 'slug:')}}
+        {{ Form::text('slug', null, array('class'=> 'form-control', 'required' => ' ', 'minlength' => '5', 'maxlength' => '255'))}}
+        <hr>
         {{ Form::label('body', 'Your blog:') }}
 
     </div>

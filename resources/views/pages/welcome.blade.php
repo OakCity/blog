@@ -15,38 +15,22 @@
 
     <div class="row">
         <div class="col-md-8">
-                <div class="post">
-                    <h3>Post Title</h3>
-                    <p>Lorem ipsem ........sdfasfasdfsdfasdfasdfasdfasdf</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-            <hr>
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsem ........sdfasfasdfsdfasdfasdfasdfasdf</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-            <hr>
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsem ........sdfasfasdfsdfasdfasdfasdfasdf</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-            <hr>
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsem ........sdfasfasdfsdfasdfasdfasdfasdf</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-            <hr>
-            <div class="post">
-                <h3>Post Title</h3>
-                <p>Lorem ipsem ........sdfasfasdfsdfasdfasdfasdfasdf</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
+
         </div>
-        <div class="col-md-3 col-md-offset-1">
+        <div class="col-md-3">
             Side Bar
         </div>
+
+           @foreach ($posts as $post)
+            <div class="post">
+                <h3>{{ $post->title }}</h3>
+                <p> {{ $post->body }}</p>
+                <a href="#" class="btn btn-primary">Read More</a>
+                <hr>
+
+            @endforeach
+            </div>
+
+
     </div>
 @endsection

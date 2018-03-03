@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-       return view('posts/create');
+       return view('posts.create');
     }
 
     /**
@@ -76,7 +76,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->with('post', $post);
+
     }
 
     /**
@@ -88,7 +90,25 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate data
+        $this->validate($request, array(
+
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ));
+
+        //save to database
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body= $request->input('body');
+
+        $post->save();
+
+        // set flash message and display
+        Session::flash('success', 'This post was successfully saves');
+
+        // redirect
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**

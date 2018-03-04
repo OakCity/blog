@@ -11,10 +11,17 @@
 |
 */
 
+Route::group(['middleware' => ['web']], function (){
+
+Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
+
 Route::get('/', 'pagesController@getIndex');
 
-Route::get('/about', 'pagesController@getAbout');
+Route::get('about', 'pagesController@getAbout');
 
-Route::get('/contact', 'pagesController@getContact');
+Route::get('contact', 'pagesController@getContact');
 
 Route::resource('posts', 'PostController');
+
+
+});
